@@ -12,30 +12,54 @@ public class VehicleDaoImpl implements VehicleDao{
 
     @Override
     public Optional<Vehicle> find(String licensePlate, int customerId) {
-        //todo: needs completion
+        for (Vehicle vehicle : storage) {
+            if(vehicle.getLicensePlate().equals(licensePlate) && vehicle.getCustomer().getId() == customerId) {
+    return Optional.of(vehicle);
+            }
+        }
         return Optional.empty();
     }
 
     @Override
     public Vehicle create(Vehicle vehicle) {
-        //todo: needs completion
-        return null;
+        for (Vehicle vehicleElement : storage){
+            if(vehicleElement.getCustomer().getId() == vehicle.getCustomer().getId()){
+                throw new IllegalArgumentException("Vehicle already exists.");
+            }
+        }
+        storage.add(vehicle);
+        return vehicle;
     }
 
     @Override
     public boolean remove(String licensePlate, int customerId) {
-        //todo: needs completion
+        Optional<Vehicle> optionalVehicle = find(licensePlate, customerId);
+        if(optionalVehicle.isPresent()){
+            storage.remove(optionalVehicle.get());
+            return true;
+        }
         return false;
     }
 
     @Override
     public void update(Vehicle vehicle) {
-        //todo: needs completion
+        for (Vehicle vehicleElement : storage) {
+            if (vehicleElement.getLicensePlate().equalsIgnoreCase(vehicle.getLicensePlate())
+                    && vehicleElement.getCustomer().getId() == vehicle.getCustomer().getId()){
+                vehicleElement.setType(vehicle.getType());
+                break;
+            }
+        }
     }
 
     @Override
     public Collection<Vehicle> findByCustomerId(int customerId) {
-        //todo: needs completion
-        return null;
+        List<Vehicle> foundVehicles = new ArrayList<>();
+        for (Vehicle vehicle : storage) {
+            if (vehicle.getCustomer().getId() == customerId) {
+                foundVehicles.add(vehicle);
+            }
+        }
+        return foundVehicles;
     }
 }

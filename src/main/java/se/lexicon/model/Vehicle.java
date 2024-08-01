@@ -23,7 +23,7 @@ public class Vehicle {
     }
 
     public void setLicensePlate(String licensePlate) {
-        if(licensePlate == null ||licensePlate.trim().isEmpty()){
+        if(licensePlate == null || licensePlate.trim().isEmpty()){
             throw new IllegalArgumentException("LicensePlate should not be null or empty.");
         }
         this.licensePlate = licensePlate;
