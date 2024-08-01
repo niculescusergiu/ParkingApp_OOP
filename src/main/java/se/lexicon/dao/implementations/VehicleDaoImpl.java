@@ -1,5 +1,6 @@
-package se.lexicon.dao;
+package se.lexicon.dao.implementations;
 
+import se.lexicon.dao.interfaces.VehicleDao;
 import se.lexicon.model.Vehicle;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public class VehicleDaoImpl implements VehicleDao{
+public class VehicleDaoImpl implements VehicleDao {
     private List<Vehicle> storage = new ArrayList<>();
 
     @Override
@@ -45,8 +46,8 @@ public class VehicleDaoImpl implements VehicleDao{
     public void update(Vehicle vehicle) {
         for (Vehicle vehicleElement : storage) {
             if (vehicleElement.getLicensePlate().equalsIgnoreCase(vehicle.getLicensePlate())
-                    && vehicleElement.getCustomer().getId() == vehicle.getCustomer().getId()){
-                vehicleElement.setType(vehicle.getType());
+                    && vehicleElement.getCustomer().getId() == vehicle.getCustomer().getId()) {
+                vehicleElement.getVehicleType().equals(vehicle.getVehicleType());
                 break;
             }
         }

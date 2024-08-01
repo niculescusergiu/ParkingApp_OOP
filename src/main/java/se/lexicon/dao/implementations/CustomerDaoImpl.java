@@ -1,10 +1,11 @@
-package se.lexicon.dao;
+package se.lexicon.dao.implementations;
 
 import se.lexicon.model.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 
 public class CustomerDaoImpl {
     private List<Customer> storage = new ArrayList<>();
@@ -46,6 +47,8 @@ public class CustomerDaoImpl {
             if (customerElement.getId() == customer.getId()){
                 customerElement.setName(customer.getName());
                 customerElement.setEmail(customer.getEmail());
+                customerElement.setReservation(customer.getReservation());
+                customerElement.setPhoneNumber(customer.getPhoneNumber());
                 break;
             }
         }

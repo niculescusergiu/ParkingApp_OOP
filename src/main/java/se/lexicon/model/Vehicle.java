@@ -55,4 +55,8 @@ public class Vehicle {
                 ", type=" + type.getName() +
                 '}';
     }
+
+    public Object getVehicleType() {
+        return VehicleType.CAR;
+    }
 }

@@ -1,4 +1,4 @@
-package se.lexicon.dao;
+package se.lexicon.dao.interfaces;
 
 import se.lexicon.model.ParkingSpot;
 

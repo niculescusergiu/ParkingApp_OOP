@@ -1,9 +1,8 @@
-package se.lexicon.dao;
+package se.lexicon.dao.implementations;
 
-import se.lexicon.model.Customer;
+import se.lexicon.dao.interfaces.ParkingSpotDao;
 import se.lexicon.model.ParkingSpot;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -52,12 +51,13 @@ public class ParkingSpotDaoImpl implements ParkingSpotDao {
 
     @Override
     public void update(ParkingSpot parkingSpot) {
-        for (int i = 0; i < storage.size(); i++) {
-            if (storage.get(i).getSpotNumber() == parkingSpot.getSpotNumber()); {
-                storage.set(i, parkingSpot);
-                return;
+        for (ParkingSpot parkingSpot1 : storage) {
+            if (parkingSpot1.getSpotNumber() == parkingSpot.getSpotNumber()) {
+                parkingSpot1.setAreaCode(parkingSpot.getAreaCode());
+                parkingSpot1.occupy();
+                parkingSpot1.vacate();
+                break;
             }
         }
-        throw new IllegalArgumentException("Parking spot with this ID does not exist.");
     }
 }
